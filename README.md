@@ -1,10 +1,34 @@
-# MM
+# MediaMachinery
 
 ## Introduction
-This project holds information on how to setup a media download, player
-and server for contents aiming for TV Series and Movies. With that,
-the aim of this project is not to inspire nor encourage to piracy
-in any way.
+This project holds information on how to setup a media downloader,
+player and server for contents aiming for TV Series and Movies.
+With that, the aim of this project is not to inspire nor to encourage
+to piracy in any way.
+
+The end goal is to is to have a NUC running on Linux Ubuntu 18.04
+with the following installed on the host:
+
+* Ubuntu 18.04
+* Kodi
+* Docker
+* Docker-Compose
+
+And the following shall be run as docker instances:
+
+* Sonarr
+* Radarr
+* Bazarr
+* Jackett
+* Emby
+* FileBrowser
+
+Now, the Kodi shall be run upon startup of the machine.
+All the docker services are run in the background. Once the docker
+services are started the shall be reached through the web interfaces on
+the private network. The purpose of these services is to look for new
+TV-Series/Movies that the user is subscribed to. Once found, they are
+downloaded and once completed the Kodi (media player) is updated.
 
 ## Hardware
 The server and player used for the purpose of downloading and playing
@@ -19,7 +43,9 @@ are the following:
 * [860 QVO SATA III 2.5 inch SSD (MZ-76Q1T0BW)][DISK]
 
 ![Image NUC][NUC_IMAGE]
+
 <img src="https://pics.crucial.com/wcsstore/CrucialSAS/images/resources/medium/package/204-pinsodimmddr3.png" width="300" height="132">
+<br>
 <img src="https://images.samsung.com/is/image/samsung/sg-860-qvo-sata-3-2-5-ssd-mz-76q1t0bw-frontblack-128845821?$PD_GALLERY_L_JPG$" width="300" height="220">
 
 ### Setting up Hardware
