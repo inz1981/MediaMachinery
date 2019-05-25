@@ -9,12 +9,12 @@ to piracy in any way.
 The end goal is to is to have a NUC running on Linux Ubuntu 18.04
 with the following installed on the host:
 
-* Ubuntu 18.04
+* [Ubuntu 18.04][UBUNTU1804]
 * [Kodi][KODI]
 * [Docker][DOCKER]
 * [Docker-Compose][DOCKER-COMPOSE]
 
-And the following shall be run as docker instances:
+And the following shall be run as docker services:
 
 * [Sonarr][SONARR]
 * [Radarr][RADARR]
@@ -25,7 +25,7 @@ And the following shall be run as docker instances:
 
 Now, the Kodi shall be run upon startup of the machine.
 All the docker services are run in the background. Once the docker
-services are started the shall be reached through the web interfaces on
+services are started they shall be reached through the web interfaces on
 the private network. The purpose of these services is to look for new
 TV-Series/Movies that the user is subscribed to. Once found, they are
 downloaded and once completed the Kodi (media player) is updated.
@@ -52,6 +52,7 @@ are the following:
 
 
 
+[UBUNTU1804]: http://releases.ubuntu.com/18.04/
 [DOCKER]: https://www.docker.com/
 [DOCKER-COMPOSE]: https://docs.docker.com/compose/
 [KODI]: https://kodi.tv/
