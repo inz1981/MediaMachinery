@@ -10,18 +10,18 @@ The end goal is to is to have a NUC running on Linux Ubuntu 18.04
 with the following installed on the host:
 
 * Ubuntu 18.04
-* Kodi
-* Docker
-* Docker-Compose
+* [Kodi][KODI]
+* [Docker][DOCKER]
+* [Docker-Compose][DOCKER-COMPOSE]
 
 And the following shall be run as docker instances:
 
-* Sonarr
-* Radarr
-* Bazarr
-* Jackett
-* Emby
-* FileBrowser
+* [Sonarr][SONARR]
+* [Radarr][RADARR]
+* [Bazarr][BAZARR]
+* [Jackett][JACKETT]
+* [Emby][EMBY]
+* [FileBrowser][FILEBROWSER]
 
 Now, the Kodi shall be run upon startup of the machine.
 All the docker services are run in the background. Once the docker
@@ -52,7 +52,15 @@ are the following:
 
 
 
-
+[DOCKER]: https://www.docker.com/
+[DOCKER-COMPOSE]: https://docs.docker.com/compose/
+[KODI]: https://kodi.tv/
+[RADARR]: https://radarr.video/
+[SONARR]: https://sonarr.tv/
+[BAZARR]: https://github.com/morpheus65535/bazarr
+[JACKETT]: https://github.com/Jackett/Jackett
+[EMBY]: https://emby.media/
+[FILEBROWSER]: https://github.com/filebrowser/filebrowser
 [NUC]: https://www.intel.com/content/www/us/en/products/boards-kits/nuc/kits/nuc6cayh.html
 [MEMORY]: https://www.crucial.com/usa/en/ct51264bf160bj
 [DISK]: https://www.samsung.com/sg/memory-storage/860-qvo-sata-3-2-5-ssd/MZ-76Q1T0BW/
