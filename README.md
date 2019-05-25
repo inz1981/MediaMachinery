@@ -19,9 +19,7 @@ are the following:
 * [860 QVO SATA III 2.5 inch SSD (MZ-76Q1T0BW)][DISK]
 
 ![Image NUC][NUC_IMAGE]
-
 <img src="https://pics.crucial.com/wcsstore/CrucialSAS/images/resources/medium/package/204-pinsodimmddr3.png" width="300" height="132">
-<br>
 <img src="https://images.samsung.com/is/image/samsung/sg-860-qvo-sata-3-2-5-ssd-mz-76q1t0bw-frontblack-128845821?$PD_GALLERY_L_JPG$" width="300" height="220">
 
 ### Setting up Hardware
