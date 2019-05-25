@@ -35,7 +35,7 @@ The server and player used for the purpose of downloading and playing
 media is an INTEL® NUC KIT NUC6CAYH of which I found to be perfect
 for this purpose. Its small, quite cheap and yet just enough powerful
 for the tasks required. I did complement it with a 2.5" SSD disk with a
-capacity of 1 TB, as well as a 4GB DDR memory card. The complete specs
+capacity of 1 TB, as well as a 4GB DDR3L memory card. The complete specs
 are the following:
 
 * [INTEL® NUC KIT NUC6CAYH (BOXNUC6CAYH)][NUC]
