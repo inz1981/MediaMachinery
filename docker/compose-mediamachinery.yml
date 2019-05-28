@@ -1,0 +1,129 @@
+version: "2"
+services:
+
+  muximux:
+    image: linuxserver/muximux
+    container_name: muximux
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - /media/storage/docker/muximux/config:/config
+    ports:
+      - 100:80
+    restart: unless-stopped
+
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      # - RUN_OPTS=<run options here> #optional
+    volumes:
+      - /media/storage/docker/jackett/config:/config
+      - /media/storage/docker/jackett/blackhole:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - /media/storage/docker/radarr/config:/config
+      - /media/storage/movies:/movies
+      - /media/storage/download:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+    volumes:
+      - /media/storage/docker/transmission/config:/config
+      - /media/storage/docker/transmission/scripts:/scripts
+      - /media/storage/download:/downloads
+      - /media/storage/movies:/movies
+      - /media/storage/tv:/tv
+      - /media/storage/torrents:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
+  
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - /media/storage/docker/sonarr/config:/config
+      - /media/storage/tv:/tv
+      - /media/storage/download:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - /media/storage/docker/bazarr/config:/config
+      - /media/storage/movies:/movies
+      - /media/storage/tv:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
+  emby:
+    image: emby/embyserver
+    container_name: emby
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    devices:
+      - /dev/dri/renderD128
+    volumes:
+      - /media/storage/docker/emby/config:/config
+      - /media/storage/movies:/movies
+      - /media/storage/tv:/tv
+    ports:
+      - 8096:8096
+      - 8920:8920
+    restart: unless-stopped
+
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - /media/storage/docker/filebrowser/config/filebrowser.json:/.filebrowser.json
+      - /media/storage/docker/filebrowser/config/filebrowser.db:/database.db
+      - /media/storage:/srv
+    ports:
+      - 1000:80
+    restart: unless-stopped
