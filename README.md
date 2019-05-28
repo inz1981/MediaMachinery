@@ -55,6 +55,13 @@ and follow the installation instructions. Standard installation is fine
 for this purpose. The user created is `inzbox`.
 For the partition table, I used only one partition for the root (`/`).
 
+## Additional packages
+
+SSH to the box
+
+    $ sudo apt-get update
+    $ sudo apt-get install openssh-server
+
 ## Storage dir
 The storage dir is where all the downloaded content shall be stored as
 well as the docker container configuration files. The structure is as
