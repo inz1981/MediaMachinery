@@ -120,7 +120,7 @@ Subtitles
 Video:
 
 * SVT Play
-* Retrospect (Unofficial  `net.rieter.xot-4.1.7.39.zip`)
+* (Unofficial) [Retrospect][Retrospect] (`net.rieter.xot-4.1.7.39.zip`)
 
 Install it with:
 _Add-ons -> Install From Zip file -> Browse to the file..._
@@ -171,3 +171,4 @@ Changed settings of transmission.
 [NUC_IMAGE]: https://www.intel.com/content/dam/products/hero/foreground/nuc6cays-nuc6cayh-front-angle-16x9.png.rendition.intel.web.320.180.png
 [MEM_IMAGE]: https://pics.crucial.com/wcsstore/CrucialSAS/images/resources/medium/package/204-pinsodimmddr3.png
 [DISK_IMAGE]: https://images.samsung.com/is/image/samsung/sg-860-qvo-sata-3-2-5-ssd-mz-76q1t0bw-frontblack-128845821?$PD_GALLERY_L_JPG$
+[Retrospect]: https://www.rieter.net/content/
