@@ -108,7 +108,23 @@ And enabled web service for user kodi, password kodi on 8080 for remote control.
 `guisettings.xml`
 
 
+### Addons
 
+Subtitles
+
+* OpenSubtitles.org
+* Addic7ed
+* Podnapisi.net
+* Subscene
+
+Video:
+
+* SVT Play
+* Retrospect (unofficial, `net.rieter.xot-4.1.7.39.zip`)
+
+Weather
+
+* Yahoo! Weather
 
 ### Setting up Kodi to autostart
 
