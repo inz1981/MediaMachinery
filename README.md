@@ -120,7 +120,10 @@ Subtitles
 Video:
 
 * SVT Play
-* Retrospect (unofficial, `net.rieter.xot-4.1.7.39.zip`)
+* Retrospect (Unofficial  `net.rieter.xot-4.1.7.39.zip`)
+
+Install it with:
+_Add-ons -> Install From Zip file -> Browse to the file..._
 
 Weather
 
