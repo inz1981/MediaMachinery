@@ -1,11 +1,42 @@
 # MediaMachinery
 
-## Introduction
-
 This project holds information on how to setup a media downloader,
-player and server for contents aiming for TV Series and Movies.
-With that, the aim of this project is not to inspire nor to encourage
-to piracy in any way.
+player and server for contents aiming for automatically download TV
+Series and Movies that the user is interested in.
+With that said, the aim of this project is not to inspire nor to
+encourage in piracy in any way, it is purely for informational purposes.
+
+Table of Contents
+=================
+
+   * [MediaMachinery](#mediamachinery)
+   * [Table of Contents](#table-of-contents)
+      * [Introduction](#introduction)
+      * [Overview](#overview)
+         * [Jackett](#jackett)
+         * [Transmission](#transmission)
+         * [Radarr / Sonarr](#radarr--sonarr)
+         * [Bazarr](#bazarr)
+         * [Emby](#emby)
+         * [Kodi](#kodi)
+         * [Portainer](#portainer)
+         * [FileBrowser](#filebrowser)
+      * [Hardware](#hardware)
+         * [Setting up Hardware](#setting-up-hardware)
+      * [Installations](#installations)
+         * [Ubuntu 18.04](#ubuntu-1804)
+            * [Additional packages](#additional-packages)
+            * [Storage Directory](#storage-directory)
+            * [Media Library Directory](#media-library-directory)
+         * [Install Docker](#install-docker)
+         * [Install compose](#install-compose)
+         * [Install Kodi](#install-kodi)
+            * [Setting up Kodi to autostart](#setting-up-kodi-to-autostart)
+            * [Optional: GUI Settings](#optional-gui-settings)
+            * [Add-ons](#add-ons)
+      * [Start/Stop docker services](#startstop-docker-services)
+
+## Introduction
 
 The end goal is to is to have a NUC running on Linux Ubuntu 18.04
 with the following installed on the host:
@@ -140,23 +171,56 @@ follows:
 
 Create the storage dir:
 
-    inzbox@inzbox-NUC6CAYH:$ sudo mkdir -p /media/storage/docker
-    inzbox@inzbox-NUC6CAYH:$ sudo chown -R inzbox:inzbox /media/storage
+    $ sudo mkdir -p /media/storage/docker
+    $ sudo chown -R inzbox:inzbox /media/storage
+
+#### Media Library Directory
+The Media Library directory is where all the downloaded content are
+moved to so that media content can be found by the player and the
+server.
+
+Radarr/Sonarr is handling the move of content into TV Series
+and Movies folders. For this project, the TV/Movies folder shall be
+created here:
+
+    $ sudo mkdir -p /media/storage/tv
+    $ sudo mkdir -p /media/storage/movies
+    $ sudo chown -R inzbox:inzbox /media/storage/tv
+    $ sudo chown -R inzbox:inzbox /media/storage/movies
 
 ### Install Docker
+
 Follow the instructions on:
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 ### Install compose
-Follow the instructions on:
-https://docs.docker.com/compose/install/
+
+Follow the instructions on: https://docs.docker.com/compose/install/
 
 ### Install Kodi
-follow the instructions on:
-https://www.omgubuntu.co.uk/2019/01/install-kodi-on-ubuntu-linux
 
-Copy the GUI settings ([`guisettings.xml`][kodi_guisettings]) of the
-kodi where the main interface is changed to only display:
+Follow the instructions on: https://www.omgubuntu.co.uk/2019/01/install-kodi-on-ubuntu-linux
+
+#### Setting up Kodi to autostart
+
+Following this thread on kodi.tv:
+https://forum.kodi.tv/showthread.php?tid=231955
+
+The user that was created during Ubuntu installation can be used
+instead, e.g. `inzbox`.
+
+Restart the box and Kodi shall be automatically started.
+
+#### Optional: GUI Settings
+
+_Optional:_ Copy the Kodi GUI settings ([`guisettings.xml`][kodi_guisettings])
+to the NUC.
+
+    $ scp -r kodi/userdata/guisettings.xml
+    inzbox@<IP_OF_NUC>:/home/inzbox/.kodi/userdata/
+
+
+The configuration changes the main interface to only display:
 
 * Movies
 * TV shows
@@ -174,15 +238,6 @@ Also changed is the regional settings to be:
 And enabled web service for user kodi, password kodi on 8080 for
 remote control.
 
-#### Setting up Kodi to autostart
-
-Following this thread on kodi.tv:
-https://forum.kodi.tv/showthread.php?tid=231955
-
-The user that was created during Ubuntu installation can be used
-instead, e.g. `inzbox`.
-
-Restart the box and Kodi shall be automatically started.
 
 #### Add-ons
 
@@ -208,13 +263,22 @@ Weather
 
 * Yahoo! Weather
 
-## Start docker services
+## Start/Stop docker services
 
-Copy the files from `docker/*` directory to the NUC and put it in
-`/media/storage/docker/`.
+All the docker services are started using docker-compose and are defined
+in
+[`docker/compose-mediamachinery.yml`][docker/compose-mediamachinery.yml].
+To start the services, the script
+[`docker/mediamachinery.sh`][docker/mediamachinery.sh] can be used.
+
+First we need to copy the files from `docker/*` directory to the NUC
+and put it in `/media/storage/docker/`.
+
+    $ scp -r docker/ inzbox@<IP_OF_NUC>:/media/storage/
 
 Login to the NUC with SSH and run the script to start the containers:
 
+    $ ssh inzbox@<IP_OF_NUC>
     $ /media/storage/docker/mediamachinery.sh start
 
 The services will be reached through these web interfaces:
@@ -227,6 +291,11 @@ The services will be reached through these web interfaces:
     Transmission: http://<IP_OF_NUC>:9091
     FileBrowser:  http://<IP_OF_NUC>:1000
     Portainer:    http://<IP_OF_NUC>:9000
+
+To stop the containers login to the NUC and run:
+
+    $ ssh inzbox@<IP_OF_NUC>
+    $ /media/storage/docker/mediamachinery.sh stop
 
 
 [UBUNTU1804]: http://releases.ubuntu.com/18.04/

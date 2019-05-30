@@ -1,17 +1,19 @@
 version: "2"
 services:
 
-  muximux:
-    image: linuxserver/muximux
-    container_name: muximux
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
     volumes:
-      - /media/storage/docker/muximux/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    #  - /media/share/docker/portainer/data:/data
+    # The last line below shall be created and set if different than default
+    # login is required (default: admin/admin). Password is generated with:
+    # $ docker run --rm httpd:2.4-alpine htpasswd -nbB admin <Password> | cut -d ":" -f 2
+    # Note: You need to escape each $ character of hash password with another $
+    # command: --admin-password '$$exAmP.le$$'
     ports:
-      - 100:80
+      - 9000:9000
     restart: unless-stopped
 
   jackett:
@@ -121,8 +123,10 @@ services:
       - PGID=1000
       - TZ=Europe/Stockholm
     volumes:
-      - /media/storage/docker/filebrowser/config/filebrowser.json:/.filebrowser.json
-      - /media/storage/docker/filebrowser/config/filebrowser.db:/database.db
+      # The following two lines shall be created and set if different than
+      # default login is required (default: admin/admin)
+      # - /media/storage/docker/filebrowser/config/filebrowser.json:/.filebrowser.json
+      # - /media/storage/docker/filebrowser/config/filebrowser.db:/database.db
       - /media/storage:/srv
     ports:
       - 1000:80
