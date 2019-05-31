@@ -159,7 +159,7 @@ For the partition table, I used only one partition for the root (`/`).
 
 #### Additional packages
 
-To be able to connect to the box with SSH, install the following:
+To be able to connect to the NUC with SSH, install the following:
 
     $ sudo apt-get update
     $ sudo apt-get install openssh-server
@@ -207,9 +207,9 @@ Following this thread on kodi.tv:
 https://forum.kodi.tv/showthread.php?tid=231955
 
 The user that was created during Ubuntu installation can be used
-instead, e.g. `inzbox`.
+in the guide above instead, e.g. `inzbox`.
 
-Restart the box and Kodi shall be automatically started.
+Restart the NUC and Kodi shall be automatically started.
 
 #### Optional: GUI Settings
 
@@ -267,9 +267,9 @@ Weather
 
 All the docker services are started using docker-compose and are defined
 in
-[`docker/compose-mediamachinery.yml`][docker/compose-mediamachinery.yml].
+[`docker/compose-mediamachinery.yml`](docker/compose-mediamachinery.yml).
 To start the services, the script
-[`docker/mediamachinery.sh`][docker/mediamachinery.sh] can be used.
+[`docker/mediamachinery.sh`](docker/mediamachinery.sh) can be used.
 
 First we need to copy the files from `docker/*` directory to the NUC
 and put it in `/media/storage/docker/`.
