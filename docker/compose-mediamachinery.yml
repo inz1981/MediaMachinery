@@ -6,12 +6,12 @@ services:
     container_name: portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    #  - /media/share/docker/portainer/data:/data
-    # The last line below shall be created and set if different than default
+      - ${STORAGE_DIR}/docker/portainer/data:/data
+    # The 'command' line below shall be updated if different than default
     # login is required (default: admin/admin). Password is generated with:
     # $ docker run --rm httpd:2.4-alpine htpasswd -nbB admin <Password> | cut -d ":" -f 2
     # Note: You need to escape each $ character of hash password with another $
-    # command: --admin-password '$$exAmP.le$$'
+    command: --admin-password '$$2y$$05$$pdmBgK8UxxyBodv9AeVBl.m6oHc.YvbNE8ciijp/ot/SvQ9rgKtaS'
     ports:
       - 9000:9000
     restart: unless-stopped
@@ -20,13 +20,13 @@ services:
     image: linuxserver/jackett
     container_name: jackett
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
       # - RUN_OPTS=<run options here> #optional
     volumes:
-      - /media/storage/docker/jackett/config:/config
-      - /media/storage/docker/jackett/blackhole:/downloads
+      - ${STORAGE_DIR}/docker/jackett/config:/config
+      - ${STORAGE_DIR}/docker/jackett/blackhole:/downloads
     ports:
       - 9117:9117
     restart: unless-stopped
@@ -35,13 +35,13 @@ services:
     image: linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     volumes:
-      - /media/storage/docker/radarr/config:/config
-      - /media/storage/movies:/movies
-      - /media/storage/download:/downloads
+      - ${STORAGE_DIR}/docker/radarr/config:/config
+      - ${STORAGE_DIR}/movies:/movies
+      - ${STORAGE_DIR}/download:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -50,17 +50,17 @@ services:
     image: linuxserver/transmission
     container_name: transmission
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
     volumes:
-      - /media/storage/docker/transmission/config:/config
-      - /media/storage/docker/transmission/scripts:/scripts
-      - /media/storage/download:/downloads
-      - /media/storage/movies:/movies
-      - /media/storage/tv:/tv
-      - /media/storage/torrents:/watch
+      - ${STORAGE_DIR}/docker/transmission/config:/config
+      - ${STORAGE_DIR}/docker/transmission/scripts:/scripts
+      - ${STORAGE_DIR}/download:/downloads
+      - ${STORAGE_DIR}/movies:/movies
+      - ${STORAGE_DIR}/tv:/tv
+      - ${STORAGE_DIR}/torrents:/watch
     ports:
       - 9091:9091
       - 51413:51413
@@ -71,13 +71,13 @@ services:
     image: linuxserver/sonarr
     container_name: sonarr
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     volumes:
-      - /media/storage/docker/sonarr/config:/config
-      - /media/storage/tv:/tv
-      - /media/storage/download:/downloads
+      - ${STORAGE_DIR}/docker/sonarr/config:/config
+      - ${STORAGE_DIR}/tv:/tv
+      - ${STORAGE_DIR}/download:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -86,13 +86,13 @@ services:
     image: linuxserver/bazarr
     container_name: bazarr
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     volumes:
-      - /media/storage/docker/bazarr/config:/config
-      - /media/storage/movies:/movies
-      - /media/storage/tv:/tv
+      - ${STORAGE_DIR}/docker/bazarr/config:/config
+      - ${STORAGE_DIR}/movies:/movies
+      - ${STORAGE_DIR}/tv:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -101,15 +101,15 @@ services:
     image: emby/embyserver
     container_name: emby
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+      - UID=${PUID}
+      - GID=${PGID}
+      - TZ=${TZ}
     devices:
       - /dev/dri/renderD128
     volumes:
-      - /media/storage/docker/emby/config:/config
-      - /media/storage/movies:/movies
-      - /media/storage/tv:/tv
+      - ${STORAGE_DIR}/docker/emby/config:/config
+      - ${STORAGE_DIR}/movies:/movies
+      - ${STORAGE_DIR}/tv:/tv
     ports:
       - 8096:8096
       - 8920:8920
@@ -119,15 +119,15 @@ services:
     image: filebrowser/filebrowser
     container_name: filebrowser
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
+      - UID=${PUID}
+      - GID=${PGID}
+      - TZ=${TZ}
     volumes:
       # The following two lines shall be created and set if different than
       # default login is required (default: admin/admin)
       # - /media/storage/docker/filebrowser/config/filebrowser.json:/.filebrowser.json
       # - /media/storage/docker/filebrowser/config/filebrowser.db:/database.db
-      - /media/storage:/srv
+      - ${STORAGE_DIR}:/srv
     ports:
       - 1000:80
     restart: unless-stopped

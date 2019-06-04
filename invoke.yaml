@@ -1,0 +1,5 @@
+TZ: Europe/Stockholm
+PUID: 1000s
+PGID: 1000
+# STORAGE_DIR: /media/storage
+STORAGE_DIR: /media/storage
